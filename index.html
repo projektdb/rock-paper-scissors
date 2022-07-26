@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+
+    <script>
+         function getComputerChoice() {
+        const moves = ["rock", "paper", "scissors"];
+        let computerMove = moves[Math.floor(Math.random() * moves.length)]
+        return computerMove;
+    }
+
+    let playerSelection;
+
+    function checkPlayerChoice() {
+        let playerSelection = prompt("Rock, paper, or scissors?").toLowerCase();
+            if (playerSelection == "rock" || playerSelection =="paper" || playerSelection =="scissors") {
+                playerSelection = playerSelection
+                return playerSelection;
+            } else {
+                playerSelection = alert("Invalid option! Please try again");
+                return checkPlayerChoice();
+                
+                
+                }
+
+              
+        }   
+
+        
+      
+    let playerScore = 0;
+    let computerScore = 0;
+        
+
+     
+    
+    function playRound() {
+        let computerChoice = getComputerChoice();
+        
+        playerSelection = checkPlayerChoice();
+        if (playerSelection == false) {
+            checkPlayerChoice();
+
+        }
+        console.log("You chose " + playerSelection + ".");
+        console.log("The computer chose " + computerChoice + ".")
+        
+
+        if (playerSelection == "rock" && computerChoice == "scissors") {
+                console.log("The computer chose " + computerChoice + ". You chose " + playerSelection + ". You win!");
+                
+                
+                return playerScore ++;
+                
+            } else if (playerSelection == "scissors" && computerChoice == "paper") {
+                console.log("The computer chose " + computerChoice + ". You chose " + playerSelection + ". You win!");
+                
+                
+                
+                return playerScore ++;
+
+            } else if (playerSelection == "paper" && computerChoice == "rock") {
+                console.log("The computer chose " + computerChoice  + ". You chose " + playerSelection + ". You win!");
+                
+                
+                
+                return playerScore ++;
+            } else if (playerSelection == computerChoice) {
+                console.log("The computer chose " + computerChoice + ". You chose " + playerSelection + ". You tie!");
+                
+                
+                
+            
+            } else {
+                console.log("The computer chose " + computerChoice + ". You chose " + playerSelection + " You lose!");
+                
+                
+                
+                return computerScore ++;
+               
+                
+            }    
+
+        
+
+    }
+
+        function playGame() {
+            for(i=0; i<5; i++) {
+                playRound();
+                console.log("The score is Player: " + playerScore + " Computer: " + computerScore);
+            }
+            if (playerScore > computerScore) {
+                console.log("You win, you cheeky bastard!");
+            } else if (playerScore < computerScore) {
+                console.log("You lost to a computer without hands. That sucks.");
+            } else 
+                console.log("You tied. I guess that's ok?");
+        }
+            
+        playGame();
+        
+        
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
