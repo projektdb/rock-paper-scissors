@@ -4,32 +4,117 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    
+    <title>Landing Page</title>
+    <link rel="stylesheet" href="style.css">
 
+</head>
+<body>
+    
+       
+    </div>
+    <div class="hero-container">
+        <div class="hero-left">    
+            <div class="hero-text">Friday Night Ross</div>
+            <div class="hero-secondary"><p>
+            Can you salvage Ross' night? </p> 
+            <p>Pick your poison.</p>
+            </div>
+            
+            
+        </div>
+        <div class="hero-right">
+            <div class="hero-secondary">
+                Your Score: <p id="score1">0</p> Fate's Score: <p id="score2">0</p>
+                
+            </div>    
+        </div>   
+    </div>     
+        <div class="card-header">
+            
+            <p id ="description"></p>
+        </div>
+        <div class="card-container">
+            <div class="card-box">
+                <div class="card"><img src = "./images/ross.jpg" id ="btnRoss" style="width:100%""></div>
+                <div class="card-text">OUR TRAGIC HERO, ROSS</div>
+            </div>
+            <div class="card-box">
+                <div class="card"><img src="./images/trenchcoat.jpg" id ="btnTrenchCoat" class="w3-image"></div>
+                <div class="card-text">HIS SECURITY BLANKET, TRENCH COAT</div>
+            </div>
+            <div class="card-box">    
+                <div class="card"><img src="./images/fireball.jpeg" id ="btnFireBall" class="w3-image"></div>
+                <div class="card-text">HIS SUSTENANCE, FIREBALL</div>
+            </div>
+            
+        </div>
+        
+        <div class="quote-container">
+            <div class="quote-text">If a tree talks to Ross in the woulds, does he answer? Fuck yeah, it's a talking tree!</div>
+            <div class="quote-author">-Ross Dbrrrvbnnoy</div>
+        </div>
+        
+            
+        </div>
+        <div class="footer">
+            Copyright @ Kroenke Game Labs
+        </div>
+    </div>
     <script>
+        let playerSelection = "Nothing"
+
+        const btnRoss = document.querySelector('#btnRoss');
+        btnRoss.addEventListener('click', () => {
+            playerSelection = "ross";
+            console.log(playerSelection);
+            window.scrollTo(0,0);
+            playRoss();
+            playRound();
+            checkScore();
+            console.log(playerScore);
+            document.getElementById("score1").innerHTML = playerScore;
+            document.getElementById("score2").innerHTML = computerScore;
+            
+        });
+
+        const btnTrenchCoat = document.querySelector('#btnTrenchCoat');
+        btnTrenchCoat.addEventListener('click', () => {
+            playerSelection = "trench coat";
+            console.log(playerSelection);
+            window.scrollTo(0,0);
+            playTrenchCoat();
+            playRound();
+            checkScore();
+            document.getElementById("score1").innerHTML = playerScore;
+            document.getElementById("score2").innerHTML = computerScore;
+        });
+
+        const btnFireBall = document.querySelector('#btnFireBall');
+        btnFireBall.addEventListener('click', () => {
+            playerSelection = "fireball";
+            console.log(playerSelection);
+            window.scrollTo(0,0);
+            playFireBall();
+            playRound();
+            checkScore();
+            document.getElementById("score1").innerHTML = playerScore;
+            document.getElementById("score2").innerHTML = computerScore;
+        });
+
+        
+       
+
          function getComputerChoice() {
-        const moves = ["rock", "paper", "scissors"];
+        const moves = ["ross", "trench coat", "fireball"];
         let computerMove = moves[Math.floor(Math.random() * moves.length)]
         return computerMove;
     }
 
-    let playerSelection;
+    
 
-    function checkPlayerChoice() {
-        let playerSelection = prompt("Rock, paper, or scissors?").toLowerCase();
-            if (playerSelection == "rock" || playerSelection =="paper" || playerSelection =="scissors") {
-                playerSelection = playerSelection
-                return playerSelection;
-            } else {
-                playerSelection = alert("Invalid option! Please try again");
-                return checkPlayerChoice();
-                
-                
-                }
-
+  
               
-        }   
+        
 
         
       
@@ -42,51 +127,47 @@
     function playRound() {
         let computerChoice = getComputerChoice();
         
-        playerSelection = checkPlayerChoice();
-        if (playerSelection == false) {
-            checkPlayerChoice();
-
-        }
-        console.log("You chose " + playerSelection + ".");
-        console.log("The computer chose " + computerChoice + ".")
+      
+        
         
 
-        if (playerSelection == "rock" && computerChoice == "scissors") {
+        if (playerSelection == "ross" && computerChoice == "fireball") {
                 console.log("The computer chose " + computerChoice + ". You chose " + playerSelection + ". You win!");
-                
+                document.getElementById("description").innerHTML = "Fate chose " + computerChoice + ". You chose " + playerSelection + ". You win!"
                 
                 return playerScore ++;
                 
-            } else if (playerSelection == "scissors" && computerChoice == "paper") {
-                console.log("The computer chose " + computerChoice + ". You chose " + playerSelection + ". You win!");
                 
+            } else if (playerSelection == "fireball" && computerChoice == "trench coat") {
+                console.log("The computer chose " + computerChoice + ". You chose " + playerSelection + ". You win!");
+                document.getElementById("description").innerHTML = "Fate chose " + computerChoice + ". You chose " + playerSelection + ". You win!"
                 
                 
                 return playerScore ++;
 
-            } else if (playerSelection == "paper" && computerChoice == "rock") {
+            } else if (playerSelection == "trench coat" && computerChoice == "ross") {
                 console.log("The computer chose " + computerChoice  + ". You chose " + playerSelection + ". You win!");
-                
+                document.getElementById("description").innerHTML = "Fate chose " + computerChoice + ". You chose " + playerSelection + ". You win!"
                 
                 
                 return playerScore ++;
             } else if (playerSelection == computerChoice) {
                 console.log("The computer chose " + computerChoice + ". You chose " + playerSelection + ". You tie!");
-                
+                document.getElementById("description").innerHTML = "Fate chose " + computerChoice + ". You chose " + playerSelection + ". You tie!"
                 
                 
             
             } else {
                 console.log("The computer chose " + computerChoice + ". You chose " + playerSelection + " You lose!");
-                
+                document.getElementById("description").innerHTML = "Fate chose " + computerChoice + ". You chose " + playerSelection + ". You lose!"
                 
                 
                 return computerScore ++;
                
                 
             }    
-
-        
+            
+            console.log("The score is Player: " + playerScore + " Computer: " + computerScore);
 
     }
 
@@ -103,12 +184,44 @@
                 console.log("You tied. I guess that's ok?");
         }
             
-        playGame();
+        function checkScore() {
+            if (playerScore == 5) {
+                document.getElementById("description").innerHTML = "You made it to 5 points! Ross will make it home without issue. You have his thanks.";
+                playerScore = 0;
+                computerScore = 0;
+                document.getElementById("score1").innerHTML = playerScore;
+                document.getElementById("score2"),innerHTML = computerScore;
+                
+            } else if (computerScore == 5) {
+                document.getElementById("description").innerHTML = "Fate outdid you. Ross is probably going to get raped on his way home. Such is life.";
+                playerScore = 0;
+                computerScore = 0;
+                document.getElementById("score1").innerHTML = playerScore;
+                document.getElementById("score2"),innerHTML = computerScore;
+                
+            }
+            else return;
+               
+            
+        }
         
+        function playRoss() {
+            let audio = new Audio("./audio/ross.wav");
+            audio.play();
+        }
+
+        function playTrenchCoat() {
+            let audio = new Audio("./audio/trenchcoat.wav");
+            audio.play();
+        }
+
+        function playFireBall() {
+            let audio = new Audio("./audio/fireball.mp3");
+            audio.play();
+        }
         
     </script>
-</head>
-<body>
-    
 </body>
 </html>
+
+    
